@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
+import Article from './components/Article';
+import InputForm from './components/InputForm';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-   hello world
+    <div className="App container">
+      <Article />
+      <InputForm/>
     </div>
   );
 }

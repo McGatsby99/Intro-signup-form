@@ -14,6 +14,7 @@
     /* ### Neutral */
     
     --Dark-Blue: hsl(249, 10%, 26%); 
+    --Trans-Dark-Blue: hsla(249, 10%, 26%, 0.3); 
     --Grayish-Blue: hsl(246, 25%, 77%);
 
     font-size: 16px;
@@ -29,8 +30,79 @@
 
 body{
   font-family: 'Poppins', sans-serif;
+  background-image: url('./images/bg-intro-mobile.png');
+  background-color: var(--Red);
+  text-align: center;
+  color: white;
 }
 
+.container{
+  padding: 4rem 1rem;
+}
+
+article{
+  margin-bottom: 3rem;
+}
+
+article h1{
+  padding: 1rem;
+}
+
+.inputForm p:first-child{
+  background-color: var(--Blue);
+  padding: 1rem 5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0px 5px 0px var(--Trans-Dark-Blue);
+}
+
+
+.inputForm form{
+  border: 1px solid var(--Grayish-Blue);
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: white;
+}
+
+.inputForm input{
+  display: block;
+  outline: none;
+  border: 1px solid var(--Grayish-Blue);
+  padding: 1rem 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.inputForm input::placeholder{
+  font-weight: 700;
+}
+
+.inputForm button{
+  display: block;
+  outline: none;
+  border: none;
+  width: 100%;
+  color: white;
+  padding: 1rem 0.5rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  background-color: var(--Green);
+
+}
+
+.inputForm form p:last-child{
+  font-size: 0.7rem;
+  color: var(--Grayish-Blue);
+  padding: 0 1rem;
+}
+
+.inputForm form p:last-child span{
+  color: var(--Red);
+  font-weight: 700;
+}
 
 
 
@@ -41,5 +113,6 @@ body{
   text-align: center; 
 }
 .attribution a {
-   color: hsl(228, 45%, 44%);
+   /* color: hsl(228, 45%, 44%); */
+   color: var(--Dark-Blue);
 }
