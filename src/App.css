@@ -105,9 +105,6 @@ article h1{
 }
 
 
-
-
-
 .attribution { 
   font-size: 11px; 
   text-align: center; 
@@ -115,4 +112,30 @@ article h1{
 .attribution a {
    /* color: hsl(228, 45%, 44%); */
    color: var(--Dark-Blue);
+}
+
+@media(min-width: 760px) {
+  body{
+    background-image: url('./images/bg-intro-desktop.png');
+  }
+
+  .container{
+    display: flex;
+    /* border: 1px solid green; */
+    margin: 0 auto;
+    gap: 100px;
+    width: max-content;
+  }
+  
+  article{
+    max-width: 500px;
+    align-self: center;
+    text-align: left;
+  }
+
+  article h1{
+    font-size: 2.5rem;
+    padding-left: 0;
+    /* border: 1px solid green; */
+  }
 }
