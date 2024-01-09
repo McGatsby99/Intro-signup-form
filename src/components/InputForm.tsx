@@ -1,6 +1,21 @@
 import React from 'react'
 
-const InputForm: React.FC = () => {
+interface State {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+interface Props{
+  state: State,
+  handleFirstName: () => void,
+  handleLastName: () => void,
+  handleEmail: () => void,
+  handlePassword: () => void  
+}
+
+const InputForm: React.FC <Props> = ({ state, handleEmail, handleFirstName, handleLastName, handlePassword}) => {
   return (
     <div className='inputForm'>
         <p><strong>Try it free 7 days</strong> then $20/mo. thereafter</p>
@@ -10,14 +25,17 @@ const InputForm: React.FC = () => {
             <input 
               id='first-name'
               type="text" 
+              value={state.firstName}
+              onChange={handleFirstName}
               placeholder='First Name'
-            
             />
         </label>
         <label htmlFor="last-name">
             <input 
               id='last-name'
               type="text"
+              value={state.lastName}
+              onChange={handleLastName}
               placeholder='Last Name' 
               />
         </label>
@@ -25,6 +43,8 @@ const InputForm: React.FC = () => {
             <input 
               id='email'
               type="email" 
+              value={state.email}
+              onChange={handleEmail}
               placeholder='Email Address' 
               
               />
@@ -32,7 +52,9 @@ const InputForm: React.FC = () => {
         <label htmlFor="password">
             <input 
               id='password'
-              type="password" 
+              type="password"
+              value={state.password}
+              onChange={handlePassword}
               placeholder='Password'
               />
         </label>
