@@ -1,32 +1,37 @@
-import React, { ChangeEvent, useReducer, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useReducer, useState } from 'react';
 import './App.css';
 import Article from './components/Article';
 import InputForm from './components/InputForm';
+import { handleErrors } from './handleErrors';
 
 interface State {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
+  rerender: boolean;
+  
 }
 
 const initialState: State = {
   firstName: '',
   lastName: '',
   email: '',
-  password: ''
+  password: '', 
+  rerender: false
 }
 
 const enum REDUCER_ACTION_TYPE{
   FIRSTNAME,
   LASTNAME,
   EMAIL,
-  PASSWORD
+  PASSWORD,
+  RERENDER
 }
 
 type ReducerAction = {
   type: REDUCER_ACTION_TYPE
-  value: string
+  value: string | boolean
 }
 
 const reducer = (state = initialState, action: ReducerAction): State =>{
@@ -46,6 +51,10 @@ const reducer = (state = initialState, action: ReducerAction): State =>{
     case REDUCER_ACTION_TYPE.PASSWORD:
       return Object.assign({}, state, {
        password: action.value 
+      });
+    case REDUCER_ACTION_TYPE.RERENDER:
+      return Object.assign({}, state, {
+        errors: action.value 
       });
     default:
       return state;
@@ -86,6 +95,23 @@ const App: React.FC = () => {
     })
   }
 
+  const handlerRerender = () =>{
+    dispatch({
+      type: REDUCER_ACTION_TYPE.RERENDER,
+      value: !state.rerender
+    })
+  }
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) =>{
+    console.log('submit')
+    e.preventDefault()
+    handleErrors()
+    if(document.getElementsByClassName('error').length >1){
+      handlerRerender();
+    }
+  }
+
+
   return (
     <div className="App container">
       <Article />
@@ -95,6 +121,8 @@ const App: React.FC = () => {
         handleLastName={handleLastName}
         handleEmail={handleEmail}
         handlePassword={handlePassword}
+        handleSubmit={handleSubmit}
+        handleRerender={handlerRerender}
       />
     </div>
   );
