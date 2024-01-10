@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useReducer, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useReducer} from 'react';
 import './App.css';
 import Article from './components/Article';
 import InputForm from './components/InputForm';
