@@ -46,9 +46,9 @@ const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleR
               placeholder='First Name'
             />
         </label>
-        <p className='error-msg'>{false? `First Name cannot be empty`: ''}</p>
+        <p className='error-msg'>{document.getElementById('first-name')?.classList?.contains('error')? `First Name cannot be empty`: ''}</p>
 
-        <img className={false? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
+        <img className={document.getElementById('first-name')?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
 
         <label htmlFor="last-name">
             <input 
