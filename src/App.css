@@ -115,8 +115,16 @@ article h1{
   font-weight: 500;
   margin-bottom: 1rem;
   background-color: var(--Green);
-
 }
+
+.inputForm button:hover{
+  opacity: 0.9;
+}
+
+.inputForm button:active{
+  transform: scale(0.99);
+}
+
 
 .inputForm form p:last-child{
   font-size: 0.7rem;

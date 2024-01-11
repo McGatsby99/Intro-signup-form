@@ -1,30 +1,31 @@
-import React, { ChangeEvent, FormEvent } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect } from 'react'
 import errorIcon from '../images/icon-error.svg'
+import { removeErrors } from '../handleErrors';
+// import { removeErrors } from '../handleErrors';
 
 interface State {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  rerender: boolean;
-  
+  rerender: boolean;  
 }
 
 interface Props{
   state: State,
-  handleFirstName: (e: ChangeEvent<HTMLInputElement>) => void,
-  handleLastName: (e: ChangeEvent<HTMLInputElement>) => void,
-  handleEmail: (e: ChangeEvent<HTMLInputElement>) => void,
-  handlePassword: (e: ChangeEvent<HTMLInputElement>) => void,
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
-  handleRerender: () => void 
+  handleInput: (e: ChangeEvent<HTMLInputElement>) => void,
+  handleRerender: () => void,  
 }
 
-const InputForm: React.FC <Props> = ({ state, handleEmail, handleFirstName, handleLastName, handlePassword, handleSubmit, handleRerender}) => {
-  let firstName = document.getElementById('first-name') as HTMLInputElement
-  let lastName = document.getElementById('last-name') as HTMLInputElement
-  let email = document.getElementById('email') as HTMLInputElement
-  let password = document.getElementById('password') as HTMLInputElement
+const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleRerender}) => {
+
+  useEffect(()=>{
+   removeErrors() 
+   console.log(state.lastName)
+  }
+  ,[state] )
+
   return (
     <div className='inputForm' >
         <p><strong>Try it free 7 days</strong> then $20/mo. thereafter</p>
@@ -35,27 +36,29 @@ const InputForm: React.FC <Props> = ({ state, handleEmail, handleFirstName, hand
               id='first-name'
               type="text" 
               value={state.firstName}
-              onChange={handleFirstName}
+              onChange={handleInput}
               onFocus={() =>{
-                firstName?.classList?.remove('error');
+                document.getElementById('first-name')?.classList?.remove('error');
+                removeErrors()
                 handleRerender();
               }
               }
               placeholder='First Name'
             />
         </label>
-        <p className='error-msg'>{firstName?.classList?.contains('error')? `${firstName.placeholder} cannot be empty`: ''}</p>
+        <p className='error-msg'>{false? `First Name cannot be empty`: ''}</p>
 
-        <img className={firstName?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
+        <img className={false? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
 
         <label htmlFor="last-name">
             <input 
               id='last-name'
               type="text"
               value={state.lastName}
-              onChange={handleLastName}
+              onChange={handleInput}
               onFocus={() =>{
-                lastName?.classList?.remove('error')
+                document.getElementById('last-name')?.classList?.remove('error')
+                removeErrors();
                 handleRerender();
               }
               }
@@ -63,17 +66,18 @@ const InputForm: React.FC <Props> = ({ state, handleEmail, handleFirstName, hand
               />
         </label>
 
-        <p className='error-msg'>{lastName?.classList?.contains('error')? `${lastName.placeholder} cannot be empty`: ''}</p>
-        <img className={lastName?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon"  width={20}/>
+        <p className='error-msg'>{document.getElementById('last-name')?.classList?.contains('error')? `Last Name cannot be empty`: ''}</p>
+        <img className={document.getElementById('last-name')?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon"  width={20}/>
 
         <label htmlFor="email">
             <input 
               id='email'
               type="email" 
               value={state.email}
-              onChange={handleEmail}
+              onChange={handleInput}
               onFocus={() =>{
-                email?.classList?.remove('error')
+                document.getElementById('email')?.classList?.remove('error')
+                removeErrors();
                 handleRerender();
               }
               }
@@ -82,17 +86,18 @@ const InputForm: React.FC <Props> = ({ state, handleEmail, handleFirstName, hand
               />
         </label>
 
-        <p className='error-msg'>{email?.classList?.contains('error')? 'Looks like this is not an email': ''}</p>
-        <img className={email?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
+        <p className='error-msg'>{document.getElementById('email')?.classList?.contains('error')? 'Looks like this is not an email': ''}</p>
+        <img className={document.getElementById('email')?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
 
         <label htmlFor="password">
             <input 
               id='password'
               type="password"
               value={state.password}
-              onChange={handlePassword}
+              onChange={handleInput}
               onFocus={() =>{
-                password?.classList?.remove('error')
+                document.getElementById('password')?.classList?.remove('error')
+                removeErrors();
                 handleRerender();
               }
               }
@@ -100,8 +105,8 @@ const InputForm: React.FC <Props> = ({ state, handleEmail, handleFirstName, hand
               />
         </label>
 
-        <p className='error-msg'>{password?.classList?.contains('error')? `${password.placeholder} cannot be empty`: ''}</p>
-        <img className={password?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
+        <p className='error-msg'>{document.getElementById('password')?.classList?.contains('error')? `Password cannot be empty`: ''}</p>
+        <img className={document.getElementById('password')?.classList?.contains('error')? `error-icon`: ''} src={errorIcon} alt="error icon" width={20}/>
 
         <button type='submit'>Claim your free trial</button>
         <p>By clicking the button, you are agreeing to our<span>Terms and Services</span></p>

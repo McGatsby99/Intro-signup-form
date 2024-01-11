@@ -67,47 +67,53 @@ const App: React.FC = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleFirstName = (e: ChangeEvent<HTMLInputElement>) =>{
-    dispatch({
-      type: REDUCER_ACTION_TYPE.FIRSTNAME,
-      value: e.target.value
-    })
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) =>{
+
+    if(e.target.id === 'first-name'){
+      dispatch({
+        type: REDUCER_ACTION_TYPE.FIRSTNAME,
+        value: e.target.value
+      })
+    }
+
+    if(e.target.id === 'last-name'){
+      dispatch({
+        type: REDUCER_ACTION_TYPE.LASTNAME,
+        value: e.target.value
+      })
+    }
+
+    if(e.target.id === 'email'){
+      dispatch({
+        type: REDUCER_ACTION_TYPE.EMAIL,
+        value: e.target.value
+      })
+    }
+
+    if(e.target.id === 'password'){
+      dispatch({
+        type: REDUCER_ACTION_TYPE.PASSWORD,
+        value: e.target.value
+      })
+    }
   }
 
-  const handleLastName = (e: ChangeEvent<HTMLInputElement>) =>{
-    dispatch({
-      type: REDUCER_ACTION_TYPE.LASTNAME,
-      value: e.target.value
-    })
-  }
 
-  const handleEmail = (e: ChangeEvent<HTMLInputElement>) =>{
-    dispatch({
-      type: REDUCER_ACTION_TYPE.EMAIL,
-      value: e.target.value
-    })
-  }
-
-  const handlePassword = (e: ChangeEvent<HTMLInputElement>) =>{
-    dispatch({
-      type: REDUCER_ACTION_TYPE.PASSWORD,
-      value: e.target.value
-    })
-  }
-
-  const handlerRerender = () =>{
+  const handleRerender = () =>{
     dispatch({
       type: REDUCER_ACTION_TYPE.RERENDER,
       value: !state.rerender
     })
   }
 
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) =>{
     console.log('submit')
     e.preventDefault()
     handleErrors()
     if(document.getElementsByClassName('error').length >1){
-      handlerRerender();
+      handleRerender();
     }
   }
 
@@ -117,12 +123,9 @@ const App: React.FC = () => {
       <Article />
       <InputForm 
         state={state}
-        handleFirstName={handleFirstName}
-        handleLastName={handleLastName}
-        handleEmail={handleEmail}
-        handlePassword={handlePassword}
+        handleInput={handleInput}
         handleSubmit={handleSubmit}
-        handleRerender={handlerRerender}
+        handleRerender={handleRerender}
       />
     </div>
   );
