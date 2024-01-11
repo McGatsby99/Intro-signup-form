@@ -41,22 +41,10 @@ let lastName = document.getElementById('last-name') as HTMLInputElement
 let email = document.getElementById('email') as HTMLInputElement
 let password = document.getElementById('password') as HTMLInputElement
 
-if(firstName.value.length > 1){
+
     firstName?.classList?.remove('error');
-}
-
-if(lastName.value.length > 1){
-    lastName?.classList?.remove('error')
-}
-
-
-if(email.value.length > 1 && email.validity.valid){
-    email?.classList?.remove('error')
-}
-
-
-if(password.value.length > 1){
-    password?.classList?.remove('error')
-}
+    lastName?.classList?.remove('error');
+    email?.classList?.remove('error');
+    password?.classList?.remove('error');
 
 }

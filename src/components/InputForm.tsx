@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import errorIcon from '../images/icon-error.svg'
 import { removeErrors } from '../handleErrors';
 // import { removeErrors } from '../handleErrors';
@@ -20,11 +20,7 @@ interface Props{
 
 const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleRerender}) => {
 
-  useEffect(()=>{
-   removeErrors() 
-   console.log(state.lastName)
-  }
-  ,[state] )
+  
 
   return (
     <div className='inputForm' >
@@ -38,7 +34,7 @@ const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleR
               value={state.firstName}
               onChange={handleInput}
               onFocus={() =>{
-                document.getElementById('first-name')?.classList?.remove('error');
+                // document.getElementById('first-name')?.classList?.remove('error');
                 removeErrors()
                 handleRerender();
               }
@@ -57,7 +53,7 @@ const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleR
               value={state.lastName}
               onChange={handleInput}
               onFocus={() =>{
-                document.getElementById('last-name')?.classList?.remove('error')
+                // document.getElementById('last-name')?.classList?.remove('error')
                 removeErrors();
                 handleRerender();
               }
@@ -76,7 +72,7 @@ const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleR
               value={state.email}
               onChange={handleInput}
               onFocus={() =>{
-                document.getElementById('email')?.classList?.remove('error')
+                // document.getElementById('email')?.classList?.remove('error')
                 removeErrors();
                 handleRerender();
               }
@@ -96,7 +92,7 @@ const InputForm: React.FC <Props> = ({ state, handleInput, handleSubmit, handleR
               value={state.password}
               onChange={handleInput}
               onFocus={() =>{
-                document.getElementById('password')?.classList?.remove('error')
+                // document.getElementById('password')?.classList?.remove('error')
                 removeErrors();
                 handleRerender();
               }
